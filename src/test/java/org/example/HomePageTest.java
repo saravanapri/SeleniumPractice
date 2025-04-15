@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import srp.HomePage;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,16 @@ public class HomePageTest {
         driver.switchTo().newWindow(WindowType.WINDOW);
         driver.get("https://www.amazon.in/");
         log.info(driver.getTitle());
+
+    }
+
+    @Test(priority = 5)
+    public void screenshotFunctions()
+    {
+        TakesScreenshot ts = (TakesScreenshot)driver;
+        File sourceFile=ts.getScreenshotAs(OutputType.FILE);
+        File targetFile=new File(System.getProperty("user.dir")+"\\screenshots\\fullpage.png");
+        sourceFile.renameTo(targetFile);
 
     }
 
